@@ -24,22 +24,22 @@ public class ApplicationConfig {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    @Bean
+    /*@Bean
     public AuthenticationProvider authenticationProvider(){
         //DAO Responsible to fetch user details and encode password
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
-    }
+    }*/
 }

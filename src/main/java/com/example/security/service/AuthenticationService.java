@@ -19,16 +19,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
+    //private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()));
+                .email(request.getEmail());
+                //.password(passwordEncoder.encode(request.getPassword()));
         if(request.getRole().equalsIgnoreCase("user"))
             user.role(Role.USER);
         else if(request.getRole().equalsIgnoreCase("admin"))
@@ -48,12 +48,13 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        System.out.println("Checking for username and password");
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        System.out.println("Checking for username and password");
+        System.out.println("Checking for username");
+        //authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
         //User is authenticated
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
+        System.out.println("Valid username");
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
