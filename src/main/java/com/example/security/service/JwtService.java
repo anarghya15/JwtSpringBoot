@@ -1,7 +1,5 @@
 package com.example.security.service;
 
-import com.example.security.entity.Role;
-import com.example.security.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
